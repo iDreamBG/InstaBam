@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Chirper!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div id="main">
+    {% block header %}
+        <header><span>InstaBam</span></header>
+
+        {% if app.user %}
+            {% set route = app.request.attributes.get('_route') %}
+
+            <div class="menu">
+                <a href="{{ path('user_feed') }}" class="{{ route == 'user_feed' ? 'nav-active' }}">Home</a>
+                <a href="{{ path('user_discover') }}" class="{{ route == 'user_discover' or route == 'followers_list' or route == 'following_list' ? 'nav-active' }}">Discover</a>
+                <a href="{{ path('security_logout') }}">Logout</a>
+                <a href="{{ path('user_profile') }}" class="{{ route == 'user_profile' ? 'nav-active' }}">Me</a>
+                <span>Welcome {{ app.getUser().getUserName() }}</span>
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+        <footer><p>InstaBam © 2019</p></footer>
+    {% endblock %}
+</div>
+{% block javascripts %}
+{% endblock %}
+
+</body>
+</html>

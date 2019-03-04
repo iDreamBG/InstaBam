@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="content">
+    <div id="chirps" class="chirps"><h2 class="titlebar">Posts from all followed users</h2>
+        {% for person in People %}
+          <article class="insta">
+            <div class="titlebar">
+              <a href="{{ path('user_foreign_profile', {userId: person.authorId}) }}" class="insta-author">{{ person.username }}</a>
+              <span class="chirp-time">
+                            <a href="{{ path('insta_list_likes', {'instaId': person.id}) }}">Likes: {{ person.likesCounter }} |</a>
+                            <a href="{{ path('insta_like', {'id': person.id}) }}"><i class="fas fa-thumbs-up"></i></a> |
+                  {% if app.getUser().isAdmin() %}
+                    <a href="{{ path('insta_edit', {id: person.id}) }}"><i class="fas fa-edit"></i></a> |
+                                <a href="{{ path('insta_delete', {id: person.id}) }}"><i class="fas fa-trash"></i></a> |
+                  {% endif %}
+                  {#{{ chirp.dateAdded|calcTime }}#}
+                        </span>
+            </div>
+            <p>{{ person.content }}</p>
+          </article>
+        {% else %}
+          <div class="chirp">
+            <span class="loading">No chirps in feed. Try to follow user(s) with chirps.</span>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+

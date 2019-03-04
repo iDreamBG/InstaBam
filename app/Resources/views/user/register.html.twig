@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        {% for msg in app.session.flashBag.get('info') %}
+                <script>
+                    toastr.info('{{ msg }}')
+                </script>
+        {% endfor %}
+
+        <form name="register" action="{{ path('user_register') }}" class="form insta" id="formRegister" method="post">
+            <label>Username</label>
+            <input name="user[username]" type="text">
+            <label>Password</label>
+            <input name="user[password][first]" type="password">
+            <label>Repeat Password</label>
+            <input name="user[password][second]" type="password">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}">
+            <input id="btnRegister" value="Register" type="submit">
+            <a href="{{ path('security_login') }}">Log in</a>
+        </form>
+    </div>
+{% endblock %}

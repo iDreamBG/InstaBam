@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="chirper">
+            <h2 class="titlebar">{{ user.username }}</h2>
+            <form id="formSubmitChirp" action="{{ path('chirp_edit', {id: chirp.id}) }}" class="chirp-form" method="post">
+                <textarea name="chirp[content]" class="chirp-input">{{ chirp.content }}</textarea>
+                {{ form_row(form._token) }}
+                <input class="chirp-submit" id="btnSubmitChirp" value="Edit" type="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

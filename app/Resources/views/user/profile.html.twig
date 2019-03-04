@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for msg in app.session.flashBag.get('delete') %}
+        <script>
+            toastr.info('{{ msg }}')
+        </script>
+    {% endfor %}
+
+    <div class="content">
+        <div class="insta">
+
+            <h2 class="titlebar">{{ user.username }}</h2>
+
+            <form id="formSubmitInsta" action="{{ path('insta_create') }}" class="insta-form" method="post">
+                <textarea name="insta[content]" class="insta-input"></textarea>
+                {{ form_row(form._token) }}
+                <input class="insta-submit" id="btnSubmitInsta" value="Publish" type="submit">
+            </form>
+
+            <div id="myStats" class="user-details">
+                {{ instaCount }} Post | <a href="{{ path('following_list', {userId: user.id}) }}">{{ followingCount }} following</a> | <a href="{{ path('followers_list', {userId: user.id}) }}">{{ followersCount }} followers</a>
+            </div>
+        </div>
+        <div id="myInsta" class="insta">
+            <h2 class="titlebar">My Post</h2>
+            {% for inst in insta %}
+                <article class="insta">
+                    <div class="titlebar">
+                        <a href="{{ path('user_foreign_profile', {userId: inst.author.id}) }}" class="insta-author">{{ inst.author.username }}</a>
+                        <span class="insta-time">
+                            <a href="{{ path('insta_list_likes', {'instаId': inst.id}) }}">Likes: {{ inst.likesCounter }} |</a>
+                            <a href="{{ path('insta_edit', {id: inst.id}) }}"><i class="fas fa-edit"></i></a> |
+                            <a href="{{ path('insta_delete', {id: inst.id}) }}"><i class="fas fa-trash"></i></a> |
+                            {#{{ chirp.dateAdded|calcTime }}#}
+                        </span>
+                    </div>
+                    <p>
+                        {{ inst.content }}
+                    </p>
+                </article>
+            {% else %}
+                <div class="chirp">
+                    <span class="loading">No chirps in database</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

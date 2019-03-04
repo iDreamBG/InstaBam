@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="insta">
+            {% set route = app.request.attributes.get('_route') %}
+            {% if route == 'user_discover' %}
+                <h2 class="titlebar">Discover all users</h2>
+            {% elseif route == 'followers_list' %}
+                <h2 class="titlebar">{{ currentUser.username }}'s followers:</h2>
+            {% elseif route == 'following_list' %}
+                <h2 class="titlebar">{{ currentUser.username }} follows:</h2>
+            {% endif %}
+            <div id="userlist">
+                {% for user in users %}
+                    <div class="userbox">
+                        <div>
+                            <a href="{{ path('user_foreign_profile', {userId: user.id}) }}" class="insta-author">{{ user.username }}</a>
+                        </div>
+
+                        <div class="user-details">
+                            {#<a href="">delete user + his insta</a>#}
+                            {{ user.instaCounter }} insta | <a href="{{ path('following_list', {userId: user.id}) }}">{{ user.followingCounter }} following</a> | <a href="{{ path('followers_list', {userId: user.id}) }}">{{ user.followersCounter }} followers</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="chirp">
+                        <span class="loading">No users</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

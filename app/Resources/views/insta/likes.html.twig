@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="chirps">
+            <h2 class="titlebar">Likes</h2>
+            <div id="userlist">
+                {% for like in likes %}
+                    <div class="userbox">
+                        <div><a href="{{ path('user_foreign_profile', {userId: like.id}) }}" class="insta-author">{{ like.username }}</a></div>
+                    </div>
+                {% else %}
+                    <div class="userbox">
+                        No likes
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

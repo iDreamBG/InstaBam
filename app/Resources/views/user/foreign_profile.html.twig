@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="chirper">
+            <h2 class="titlebar">{{ user.username }}</h2>
+
+            {% if isFollowed %}
+                <a id="btnFollow" class="chirp-author" href="{{ path('user_unfollow', {followedId: user.id}) }}">Unfollow</a>
+            {% else %}
+                <a id="btnFollow" class="chirp-author" href="{{ path('user_follow', {followedId: user.id}) }}">Follow</a>
+            {% endif %}
+
+            <div id="userProfileStats" class="user-details">
+                {{ instaCount }} insta | <a href="{{ path('following_list', {userId: user.id}) }}">{{ followingCount }} following</a> | <a href="{{ path('followers_list', {userId: user.id}) }}">{{ followersCount }} followers</a>
+            </div>
+        </div>
+        <div id="profileInsta" class="insta">
+            <h2 class="titlebar">{{ user.username }}'s Posts</h2>
+                {% for inst in insta %}
+                    <article class="insta">
+                        <div class="titlebar">
+                            <a href="{{ path('user_foreign_profile', {userId: user.id}) }}" class="insta-author">{{ user.username }}</a>
+                            <span class="insta-time">
+                                <a href="{{ path('insta_list_likes', {'instaId': inst.id}) }}">Likes: {{ inst.likesCounter }} |</a>
+                                <a href="{{ path('insta_like', {'id': inst.id}) }}"><i class="fas fa-thumbs-up"></i></a> |
+                                {#{% if app.getUser().isAdmin() %}#}
+                                    {#<a href="{{ path('chirp_edit', {id: chirp.id}) }}"><i class="fas fa-edit"></i></a> |#}
+                                    {#<a href="{{ path('chirp_delete', {id: chirp.id}) }}"><i class="fas fa-trash"></i></a> |#}
+                                {#{% endif %}#}
+                                {#{{ insta.dateAdded|calcTime }}#}
+                            </span>
+                        </div>
+                        <p>{{ inst.content }}</p>
+                    </article>
+                {% else %}
+                    <div class="insta">
+                        <span class="loading">The user does not have any posts!</span>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

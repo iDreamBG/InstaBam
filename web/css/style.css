@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+header, footer {
+    text-align: center;
+    background: #cfcfcf;
+    height: 40px;
+    vertical-align: middle;
+}
+
+header>*, footer>* {
+    vertical-align: middle;
+    line-height: 40px;
+}
+
+#main>div {
+    margin: auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.menu {
+    background: #4d4d4d;
+}
+
+.menu>a {
+    color: #e0e0e0;
+    text-decoration: none;
+
+    padding: 5px 10px;
+}
+
+.menu>span {
+    color: #e0e0e0;
+}
+
+.menu a:nth-of-type(3),
+a:nth-of-type(4),
+.menu span {
+    padding: 1px 10px;
+    float: right;
+}
+
+.menu>a:hover {
+    background: #7f7f7f;
+}
+
+.nav-active {
+    color: rgb(76, 151, 170) !important;
+}
+
+.loading {
+    padding: 10px;
+}
+
+.chirps {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+}
+
+.insta {
+    position: relative;
+    border-top: 1px solid #e0e0e0;
+}
+
+.titlebar {
+    overflow: auto;
+    padding: 10px;
+}
+
+.insta-author {
+    font-weight: bold;
+}
+
+.insta-time {
+    float: right;
+}
+
+.insta-time>a, .user-details>a {
+    text-decoration: none;
+}
+
+.insta>p {
+    padding: 10px;
+    word-break: break-all;
+}
+
+.userbox {
+    border-top: 1px solid #e0e0e0;
+    padding: 10px;
+    overflow: auto;
+    position: relative;
+}
+
+
+.user-details {
+    vertical-align: bottom;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #7f7f7f;
+}
+
+.chirper {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+    vertical-align: bottom;
+    position: relative;
+}
+
+#formSubmitInsta {
+    text-align: right;
+    margin: 10px;
+    display: inline-block;
+    width: 300px;
+}
+
+.insta-input {
+    resize: none;
+    width: 300px;
+    height: 5em;
+    display: block;
+}
+
+#btnSubmitInsta {
+    width: 75px;
+    height: 25px;
+    background: #6592bf;
+    color: #ffffff;
+    border: none;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#btnSubmitInsta:hover {
+    background: #83bef7;
+    cursor: pointer;
+}
+
+.insta-author {
+    color: #6592bf;
+    text-decoration: none;
+}
+
+.insta-author:hover {
+    color: #83bef7;
+}
+
+.insta-time {
+    color: #7f7f7f;
+}
+
+#btnFollow {
+    margin: 2px;
+    padding: 5px;
+    background: #6592bf;
+    color: #ffffff;
+    display: inline-block;
+}
+#btnFollow:hover {
+    background: #83bef7;
+}
+
+#btnUnfollow {
+    margin: 10px;
+    padding: 5px 10px;
+    background: #6592bf;
+    color: #ffffff;
+    display: inline-block;
+}
+#btnUnfollow:hover {
+    background: #f79c97;
+}
+
+.form {
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    max-width: 200px;
+}
+
+.form>* {
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.form>input[type="submit"] {
+    border: 0;
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background: #6592bf;
+    color: #ffffff;
+}
+.form>input[type="submit"]:hover {
+    background: #83bef7;
+    cursor: pointer;
+}
